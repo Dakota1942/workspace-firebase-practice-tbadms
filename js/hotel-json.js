@@ -1,14 +1,13 @@
 /* Change the configuration */
 
 var firebaseConfig = {
-  apiKey: 'AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM',
-  authDomain: 'grocerylist-91956.firebaseapp.com',
-  databaseURL: 'https://grocerylist-91956.firebaseio.com',
-  projectId: 'grocerylist-91956',
-  storageBucket: 'grocerylist-91956.appspot.com',
-  messagingSenderId: '813812426276',
-  appId: '1:813812426276:web:93e5897af12892ff78dab1',
-  measurementId: 'G-VZ83BTR72T',
+  apiKey: "AIzaSyA4RRvZ4ivOsgNRRN1igIjc43VdVARMQo0",
+  authDomain: "grocery-list-98b6c.firebaseapp.com",
+  projectId: "grocery-list-98b6c",
+  storageBucket: "grocery-list-98b6c.appspot.com",
+  messagingSenderId: "279937219467",
+  appId: "1:279937219467:web:9c24ec3c319961c4438d8e",
+  measurementId: "G-GRJKNJ2PLM"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -16,9 +15,22 @@ firebase.initializeApp(firebaseConfig);
 // enter data in
 $("input[type='button']").click(function (e) {
   //get the value of form
-
+  var inputData = $('form').serializeArray();
+  // console.log(inputData);
   /* save the data to database */
-
+  /*for(var item in inputData) {
+    console.log(inputData[item].value);
+  }*/
+  // console.log(inputData[2]);
+  // console.log(inputData[2].name);
+  // console.log(inputData[2].value);
+  var data = {};
+  inputData.forEach((entry)=>{
+    console.log(entry);
+    data[entry.name]=entry.value;
+  });
+  console.log(data);
+  firebase.firestore().collection("hotel").add(data);
   /* clear the entry */
   $('form')[0].reset();
 });
@@ -31,16 +43,18 @@ array1.forEach(element => console.log(element));
 
 /* read the data from the database */
 
-/*
+
 firebase
   .firestore()
-  .collection('hoteldata')
+  .collection('hotel')
   .onSnapshot((querySnapshot) => {
     console.log(querySnapshot.size);
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
+      console.log(doc.data().name);
       console.log(doc.data().room);
+      console.log(doc.data().checkin);
       console.log(doc.data().checkout);
+      console.log(doc.data().num);
     });
   });
-*/
