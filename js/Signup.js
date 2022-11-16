@@ -1,12 +1,11 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM",
-  authDomain: "grocerylist-91956.firebaseapp.com",
-  databaseURL: "https://grocerylist-91956.firebaseio.com",
-  projectId: "grocerylist-91956",
-  storageBucket: "grocerylist-91956.appspot.com",
-  messagingSenderId: "813812426276",
-  appId: "1:813812426276:web:93e5897af12892ff78dab1",
-  measurementId: "G-VZ83BTR72T"
+  apiKey: "AIzaSyA4RRvZ4ivOsgNRRN1igIjc43VdVARMQo0",
+  authDomain: "grocery-list-98b6c.firebaseapp.com",
+  projectId: "grocery-list-98b6c",
+  storageBucket: "grocery-list-98b6c.appspot.com",
+  messagingSenderId: "279937219467",
+  appId: "1:279937219467:web:9c24ec3c319961c4438d8e",
+  measurementId: "G-GRJKNJ2PLM"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -16,9 +15,12 @@ $("#signup-form").submit(function(e) {
   e.preventDefault();
   // get the username(email) and password from the form
   // change the following code
-  var email = "yilianz4@gmail.com";
-  var password = "ddsgagafda";
+  var email = "dj@solutionssquared.com";
+  var password = "Password";
 
+  document.getElementsByName('username').value=email;
+  document.getElementsByName('password').value=password;
+  
   // create a user with email address and password
   firebase
     .auth()
@@ -26,7 +28,7 @@ $("#signup-form").submit(function(e) {
     .then(user => {
       // Signed in
       // ...
-
+      
       console.log("You are signed up");
       window.location.href = "Login.html";
     })
