@@ -1,12 +1,12 @@
+
 var firebaseConfig = {
-  apiKey: 'AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM',
-  authDomain: 'grocerylist-91956.firebaseapp.com',
-  databaseURL: 'https://grocerylist-91956.firebaseio.com',
-  projectId: 'grocerylist-91956',
-  storageBucket: 'grocerylist-91956.appspot.com',
-  messagingSenderId: '813812426276',
-  appId: '1:813812426276:web:93e5897af12892ff78dab1',
-  measurementId: 'G-VZ83BTR72T',
+  apiKey: "AIzaSyA4RRvZ4ivOsgNRRN1igIjc43VdVARMQo0",
+  authDomain: "grocery-list-98b6c.firebaseapp.com",
+  projectId: "grocery-list-98b6c",
+  storageBucket: "grocery-list-98b6c.appspot.com",
+  messagingSenderId: "279937219467",
+  appId: "1:279937219467:web:9c24ec3c319961c4438d8e",
+  measurementId: "G-GRJKNJ2PLM"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -16,8 +16,14 @@ $('#Login').submit(function (e) {
   e.preventDefault();
   // get the user name and password from form
   // You need to change this.
-  var email = 'yilianz4@gmail.com';
-  var password = 'ddsgagafda';
+  var email = $('#login').val();
+  var password = $('#password').val();
+
+  console.log("email: " + email + " password: " + password);
+  let user = firebase.auth().currentUser;
+  window.location.href="Surveyresult.html";
+
+  
 
   firebase
     .auth()
@@ -45,3 +51,15 @@ $('#Login').submit(function (e) {
     });
 });
 
+$('#google').click(function(){
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then((result) => {
+    const user = result.user;
+    console.log("Google User: " + user.email)
+    //window.location.href="Surveyresult.html"
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("Error message: " + errorMessage);
+  });
+});
