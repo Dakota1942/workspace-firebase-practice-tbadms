@@ -42,6 +42,16 @@ firebase
     });
   });
 
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user.email);
+    } else {
+      // User is signed out
+      console.log('no user is logged in');
+      window.location.href="index.html";
+    }
+  });
+
 // update the result in table
 firebase.firestore().collection('surveydata').onSnapshot(function(querySnapshot){
   var n1 = 0; // how many A's
@@ -59,5 +69,13 @@ firebase.firestore().collection('surveydata').onSnapshot(function(querySnapshot)
       case "D": n4++; $('#ans4').text(n4);break;
       case "E": n5++; $('#ans5').text(n5);break;
     }
+  });
+});
+
+$('#signout').click(function() {
+  firebase.auth().signOut().then(() => {
+    window.location.href="index.html";
+  }).catch((error) => {
+    console.log(error.message);
   });
 });
