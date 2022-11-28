@@ -23,7 +23,16 @@ $('#Login').submit(function (e) {
   let user = firebase.auth().currentUser;
   window.location.href="Surveyresult.html";
 
-  
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user.email);
+    } else {
+      // User is signed out
+      console.log('no user is logged in');
+      window.location.href="index.html";
+    }
+  });
+
 
   firebase
     .auth()

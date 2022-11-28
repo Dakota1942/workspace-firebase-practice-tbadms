@@ -42,15 +42,6 @@ firebase
     });
   });
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(user.email);
-    } else {
-      // User is signed out
-      console.log('no user is logged in');
-      window.location.href="index.html";
-    }
-  });
 
 // update the result in table
 firebase.firestore().collection('surveydata').onSnapshot(function(querySnapshot){
